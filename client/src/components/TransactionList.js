@@ -8,7 +8,7 @@ export const TransactionList = () => {
   //we use useEffect when we make http request from a component
   useEffect(() => {
     getTransactions();
-  }, []); //it will run only once
+  },[]); //it will run only once
   return (
     <div>
       <h3>History</h3>

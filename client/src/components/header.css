@@ -1,0 +1,27 @@
+/* Header.css */
+
+.header {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    padding: 20px;
+    margin-bottom: 5rem;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+    transition: color 0.3s, background-color 0.3s; /* Adding transitions */
+    animation: fadeIn 1s ease; /* Adding a fade-in animation */
+  }
+  
+  .header:hover {
+    color: #007bff;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

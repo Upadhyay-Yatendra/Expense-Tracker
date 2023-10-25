@@ -19,9 +19,53 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+/* Apply the styles for screen sizes 900px and larger */
+/* Your container */
 .container {
-  margin: 30px auto;
-  width: 350px;
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
+  grid-column-gap: 6.25rem; /* Gap between columns */
+  grid-template-rows: auto auto; /* Row sizing set to auto for both rows */
+  grid-auto-rows: auto;
+}
+
+/* Styles for the first row in the first column */
+.first-row{
+  grid-row:1/2;
+}
+
+/* Styles for the second row in the first column */
+.second-row {
+  grid-row: 2 / 3; /* This div spans from row 2 to row 3 */
+}
+
+/* Styles for the third row in the second column */
+.second-column{
+  grid-column: 2/3;
+  grid-row: span 2; /* This column spans 2 rows */
+}
+
+/* Override the styles for screen sizes less than 900px */
+@media (max-width: 900px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    /* Display elements vertically */
+    margin: 30px auto;
+    width: 80vw;
+  }
+
+  /* Reorder the divs for smaller screens */
+  .container>div:nth-child(2) {
+    order: 3;
+    /* AddTransaction div shows up last */
+  }
+
+  .container>div:nth-child(3) {
+    order: 2;
+    /* TransactionList div shows up before AddTransaction */
+  }
 }
 
 h1 {
@@ -33,10 +77,13 @@ h3 {
   border-bottom: 1px solid #bbb;
   padding-bottom: 10px;
   margin: 40px 0 10px;
+  margin-top:0;
 }
 
 h4 {
-  margin: 0;
+  margin:0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #bbb;
   text-transform: uppercase;
 }
 
@@ -49,12 +96,12 @@ h4 {
   margin: 20px 0;
 }
 
-.inc-exp-container > div {
+.inc-exp-container>div {
   flex: 1;
   text-align: center;
 }
 
-.inc-exp-container > div:first-of-type {
+.inc-exp-container>div:first-of-type {
   border-right: 1px solid #dedede;
 }
 
@@ -98,13 +145,72 @@ input[type="number"] {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+  transition: background-color 0.3s, transform 0.2s, border 0.3s;
+  /* Updated transition property */
+}
+
+/* Hover styles */
+.btn:hover {
+  background-color: #0056b3;
+  color: whitesmoke;
+  font-size: 1rem;
+  transform: scale(1.05);
+  border: 2px solid #0056b3;
+  /* Add a border on hover */
+  border-radius: 10px;
 }
 
 .btn:focus,
 .delete-btn:focus {
   outline: 0;
 }
+/* ******************************** */
+/* Styles for the buttons of income and expenditure */
+/* Common styles for both buttons */
+.income-button, .expense-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  margin: 10px ;
+  transition: background-color 0.3s;
+}
 
+/* Styles for the Income button */
+.income-button {
+  background-color: #2FCC71; /* Green background color */
+}
+
+/* Hover effect for the Income button */
+.income-button:hover {
+  background-color: #45a045; /* Darker green on hover */
+}
+
+/* Styles for the Expense button */
+.expense-button {
+  background-color: #C03A2B; /* Red background color */
+}
+
+/* Hover effect for the Expense button */
+.expense-button:hover {
+  background-color: #e64128; /* Darker red on hover */
+}
+
+/* Styles for the clicked (active) button */
+.expense-button.active {
+  border: 2px solid #FF5733; /* Red border for the Expense button */
+  transform: scale(1.1); /* Slightly larger size on click */
+}
+
+.income-button.active {
+  border: 2px solid #4CAF50; /* Green border for the Income button */
+  transform: scale(1.1); /* Slightly larger size on click */
+}
+
+/* *********************** */
 .list {
   list-style-type: none;
   padding: 0;
@@ -132,22 +238,30 @@ input[type="number"] {
 
 .delete-btn {
   cursor: pointer;
-  background-color: #e74c3c;
+  background-color: #da200b;
   border: 0;
   color: #fff;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 20px;
   padding: 2px 5px;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translate(-100%, -50%);
-  opacity: 0;
+  opacity: 0.2;
   transition: opacity 0.3s ease;
 }
 
 .list li:hover .delete-btn {
   opacity: 1;
+}
+
+.list li .delete-btn:hover {
+  background-color: #ff1f1f; /* Darker red on hover */
+}
+
+.list li .delete-btn:active {
+  background-color: #ff0000; /* Bright red when clicked */
 }
 
 @media (max-width: 320px) {

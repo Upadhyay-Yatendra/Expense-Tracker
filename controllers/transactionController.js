@@ -25,7 +25,7 @@ exports.getTransactions = async (req, res, next) => {
 
 // @desc    Add transaction
 // @route   POST /ap1/v1/transactions
-// @acess   Pubic
+// @access   Pubic
 //It will get the data from the Client
 exports.addTransaction = async (req, res, next) => {
   try {
