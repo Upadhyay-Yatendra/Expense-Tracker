@@ -3,7 +3,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const morgan = require("morgan");
+const cors = require('cors'); // Import the cors package
 const connectDB = require("./config/db");
+
 
 dotenv.config({ path: "./config/config.env" }); //specifying where .env file is
 
@@ -19,6 +21,7 @@ if (process.env.NODE_ENV === "developement") {
   app.use(morgan("dev"));
 }
 
+app.use(cors());
 app.use("/api/v1/transactions", transactions); //to use transactionRoute on the url
 //it will fire transactionRoute response on "/api/v1/transactions" url
 

@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
-
+import { BaseUrl } from "../utils/BaseUrl";
 // Initial state
 const initialState = {
   transactions: [],
@@ -21,9 +21,11 @@ export const GlobalProvider = ({ children }) => {
   //Actions
   const getTransactions = async () => {
     try {
-      const res = await axios.get("/api/v1/transactions");
+      console.log('\n\nParent Url->',BaseUrl)
+      const res =  await axios.get(BaseUrl + "/api/v1/transactions");
       // we do need to include the --prefix  i.e http://localhost:5000
-      //coz we added it in the proxy in package.json file
+      //coz we added it in the proxy in package.json file\
+      console.log(res.data);
       dispatch({
         type: "GET_TRANSACTIONS",
         payload: res.data.data,
@@ -39,7 +41,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteTransaction = async (id) => {
     try {
-      await axios.delete(`/api/v1/transactions/${id}`);
+      await axios.delete(BaseUrl + `/api/v1/transactions/${id}`);
       // here axios will send the req to delete the transaction of particular id
       //to mongoDB through backend so that it'll get remove from database as well
       dispatch({
@@ -62,7 +64,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.post(
+      const res = await axios.post(BaseUrl + 
         "/api/v1/transactions/",
         transaction,
         config
