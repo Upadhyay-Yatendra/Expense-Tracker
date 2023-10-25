@@ -32,5 +32,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "https://expensetracker-z9a5.onrender.com"
 }
